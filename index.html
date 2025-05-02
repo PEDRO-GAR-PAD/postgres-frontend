@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Usuarios</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      padding: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .form-container {
+      background: white;
+      max-width: 500px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .post-btn {
+      background-color: #007bff;
+    }
+
+    .get-btn {
+      background-color: #28a745;
+    }
+
+    #resultado {
+      margin-top: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .edit-btn, .delete-btn {
+      padding: 5px 8px;
+      margin: 0 2px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .edit-btn {
+      background-color: #ffc107;
+      color: white;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .edit-btn:hover {
+      background-color: #e0a800;
+    }
+
+    .delete-btn:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Gestión de Usuarios</h2>
+
+<div class="form-container">
+  <div class="form-group">
+    <label for="name">Nombre</label>
+    <input type="text" id="name" placeholder="Ingresa tu nombre">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Correo</label>
+    <input type="email" id="email" placeholder="ejemplo@correo.com">
+  </div>
+
+  <div class="form-group">
+    <label for="age">Edad</label>
+    <input type="number" id="age" placeholder="Ej. 30">
+  </div>
+
+  <div class="form-group">
+    <label for="comments">Comentarios</label>
+    <input type="text" id="comments" placeholder="Escribe un comentario">
+  </div>
+
+  <div class="button-group">
+    <button class="post-btn" onclick="postUser()">POST Usuario</button>
+    <button class="get-btn" onclick="getUsers()">GET Usuarios</button>
+  </div>
+
+  <div class="button-group" id="updateArea">
+  </div>
+</div>
+
+<div id="resultado"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="callrestapi.js"></script>
+
+</body>
+</html>
