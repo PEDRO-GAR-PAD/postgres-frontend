@@ -1,0 +1,33 @@
+name: Node.js_DockerImage_v1
+
+on:
+  push:
+    branches: [ master ] 
+  pull_request:
+    branches: [ master ] 
+
+jobs:
+  node_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: docker login
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Download and run the Docker base image
+        run: docker run -d --name http_nodejs_app httpd
+
+      - name: copy files to Docker image
+        run: docker cp ./ http_nodejs_app:/usr/local/apache2/htdocs
+
+      - name: Build the custom Docker image
+        run: |
+          docker commit --change "ENV MODEL_NAME http_nodejs_app" http_nodejs_app \
+          ${{ secrets.DOCKER_USER }}/postgres-frontend:${{ github.sha }}
+      - name: Docker Push
+        run: docker push ${{ secrets.DOCKER_USER }}/postgres-frontend:${{ github.sha }}
